@@ -3,6 +3,10 @@ import {connect} from 'react-redux';
 import {Button} from "@material-ui/core";
 import {signIn, signOut} from "../actions";
 
+const buttonStyle = {
+    color: "#ffffff"
+};
+
 class GoogleAuth extends React.Component {
     state = {isSignedIn: null, userId: null};
 
@@ -28,11 +32,11 @@ class GoogleAuth extends React.Component {
         }
     };
 
-    onSignInClick = () => {
+    onLoginClick = () => {
         this.auth.signIn();
     };
 
-    onSignOutClick = () => {
+    onLogOutClick = () => {
         this.auth.signOut();
     };
 
@@ -40,26 +44,14 @@ class GoogleAuth extends React.Component {
         switch (this.props.isSignedIn) {
             case true:
                 return (
-                    <Button
-                        className=''
-                        onClick={this.onSignOutClick}
-                    >
-                        Sign Out
-                    </Button>
+                    <Button onClick={this.onLogOutClick} style={buttonStyle}>Logout</Button>
                 );
             case false:
                 return (
-                    <Button
-                        variant="contained"
-                        color="default"
-                        className=''
-                        onClick={this.onSignInClick}
-                    >
-                        Login with Google
-                    </Button>
+                    <Button onClick={this.onLoginClick} style={buttonStyle}>Login</Button>
                 );
             default:
-                return <div className="button-placeholder"></div>
+                return null
         }
     }
 

@@ -7,7 +7,7 @@ import Select from '@material-ui/core/Select';
 
 import {selectCategory} from "../actions";
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles(() =>
     createStyles({
         root: {
             width: "min-content",
