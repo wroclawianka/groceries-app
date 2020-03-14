@@ -5,6 +5,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
+import {selectCategory} from "../actions";
+
 const useStyles = makeStyles((theme) =>
     createStyles({
         formControl: {
@@ -16,12 +18,15 @@ const useStyles = makeStyles((theme) =>
 
 const ShoppingList = (props) => {
     const classes = useStyles();
-    const [category, setCategory] = React.useState('');
+
+    const handleChange = event => {
+        props.selectCategory(event.target.value)
+    };
 
     const renderOptions = () => {
         return props.categories.map(category => {
             return (
-                <MenuItem value={category.id}>{category.label}</MenuItem>
+                <MenuItem value={category.id} key={category.id}>{category.label}</MenuItem>
             )
         })
     };
@@ -29,14 +34,18 @@ const ShoppingList = (props) => {
     return (
         <div>
             <FormControl className={classes.formControl}>
-                <Select value={category}>{renderOptions()}</Select>
+                <Select value={props.selectedCategory} onChange={handleChange}>{renderOptions()}</Select>
             </FormControl>
         </div>
     )
 };
 
 const mapStateToProps = state => {
-    return {categories: state.categories};
+    return {
+        categories: state.categories,
+        selectCategory: state.selectCategory,
+        selectedCategory: state.selectedCategory || state.categories[0].id
+    };
 };
 
-export default connect(mapStateToProps)(ShoppingList);
+export default connect(mapStateToProps, {selectCategory})(ShoppingList);
