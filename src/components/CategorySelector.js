@@ -9,9 +9,13 @@ import {selectCategory} from "../actions";
 
 const useStyles = makeStyles((theme) =>
     createStyles({
+        root: {
+            width: "min-content",
+            margin: "auto",
+            padding: "20px 5px"
+        },
         formControl: {
-            margin: theme.spacing(1),
-            minWidth: 120,
+            minWidth: 200,
         },
     }),
 );
@@ -32,7 +36,7 @@ const CategorySelector = (props) => {
     };
 
     return (
-        <div>
+        <div className={classes.root}>
             <FormControl className={classes.formControl}>
                 <Select value={props.selectedCategory} onChange={handleChange}>{renderOptions()}</Select>
             </FormControl>
