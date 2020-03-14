@@ -6,6 +6,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import ListSubheader from '@material-ui/core/ListSubheader';
+
 import CategorySelector from "./CategorySelector";
 
 const useStyles = makeStyles(theme => ({
@@ -75,23 +76,8 @@ const CompletedItems = (props) => {
 
 const ShoppingList = () => {
     const classes = useStyles();
-    const [checked, setChecked] = React.useState([1]);
-
     let shoppingList = [0, 1, 2, 3];
     let completedItems = ["A", "B", "C"];
-
-    const handleToggle = value => () => {
-        const currentIndex = checked.indexOf(value);
-        const newChecked = [...checked];
-
-        if (currentIndex === -1) {
-            newChecked.push(value);
-        } else {
-            newChecked.splice(currentIndex, 1);
-        }
-
-        setChecked(newChecked);
-    };
 
     return (
         <div className={classes.root}>
