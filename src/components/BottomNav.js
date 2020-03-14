@@ -8,7 +8,11 @@ import Restaurant from '@material-ui/icons/Restaurant';
 
 const useStyles = makeStyles({
     root: {
-        width: 500
+        position: "absolute",
+        bottom: 0,
+        right: 0,
+        left: 0,
+        padding: "5px"
     },
 });
 
