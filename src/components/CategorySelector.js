@@ -46,9 +46,9 @@ const CategorySelector = (props) => {
 
 const mapStateToProps = state => {
     return {
-        categories: state.categories,
-        selectCategory: state.selectCategory,
-        selectedCategory: state.selectedCategory || state.categories[0].id
+        categories: state.categories.list,
+        selectCategory: state.categories.selectCategory,
+        selectedCategory: state.categories.selected || state.categories.list[0].id
     };
 };
 
