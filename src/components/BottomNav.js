@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     },
 });
 
-function BottomNav() {
+const BottomNav = () => {
     const classes = useStyles();
     const [value, setValue] = React.useState('recents');
 
@@ -31,7 +31,7 @@ function BottomNav() {
             <BottomNavigationAction label="Recipes" value="recipes" icon={<Restaurant/>}/>
         </BottomNavigation>
     );
-}
+};
 
 
 export default BottomNav

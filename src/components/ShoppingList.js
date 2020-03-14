@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) =>
     }),
 );
 
-function ShoppingList() {
+const ShoppingList = () => {
     const classes = useStyles();
     const [category, setCategory] = React.useState('');
 
@@ -26,6 +26,6 @@ function ShoppingList() {
             </FormControl>
         </div>
     )
-}
+};
 
 export default ShoppingList

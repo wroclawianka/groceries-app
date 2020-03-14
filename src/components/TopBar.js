@@ -13,7 +13,7 @@ const useStyles = makeStyles(() =>
     }),
 );
 
-function TopBar() {
+const TopBar = () => {
     const classes = useStyles();
     return (
         <AppBar position="static">
@@ -25,6 +25,6 @@ function TopBar() {
             </Toolbar>
         </AppBar>
     );
-}
+};
 
 export default TopBar;
