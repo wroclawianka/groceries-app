@@ -1,7 +1,8 @@
 import {
     SIGN_IN,
     SIGN_OUT,
-    CATEGORY_SELECTED
+    CATEGORY_SELECTED,
+    ADD_ITEM
 } from "./types";
 
 export const signIn = (userId) => {
@@ -21,5 +22,12 @@ export const selectCategory = (category) => {
     return {
         type: CATEGORY_SELECTED,
         payload: category
+    }
+};
+
+export const addItem = (item) => {
+    return {
+        type: ADD_ITEM,
+        payload: item
     }
 };
