@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const ItemSchema = new Schema(
     {
         id: Number,
-        label: String
+        label: String,
+        completed: Boolean,
     }
 );
 
