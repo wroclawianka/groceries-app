@@ -4,7 +4,8 @@ import {
     SIGN_OUT,
     CATEGORY_SELECTED,
     FETCH_ITEMS,
-    CREATE_ITEM
+    CREATE_ITEM,
+    EDIT_ITEM
 } from "./types";
 
 export const signIn = (userId) => {
@@ -27,13 +28,18 @@ export const selectCategory = (category) => {
     }
 };
 
-export const fetchItems  = () => async dispatch => {
+export const fetchItems = () => async dispatch => {
     const response = await groceries.get('/item');
     dispatch({type: FETCH_ITEMS, payload: response.data})
 };
 
 export const createItem = (label) => async (dispatch, getState) => {
     const {userId} = getState().auth;
-    const response = await groceries.post('/item', {label : label, userId});
+    const response = await groceries.post('/item', {label: label, userId});
     dispatch({type: CREATE_ITEM, payload: response.data});
+};
+
+export const editItem = (id, completed) => async dispatch => {
+    const response = await groceries.patch(`/item/${id}`, {completed});
+    dispatch({type: EDIT_ITEM, payload: response.data})
 };
