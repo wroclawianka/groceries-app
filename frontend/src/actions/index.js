@@ -3,7 +3,8 @@ import {
     SIGN_IN,
     SIGN_OUT,
     CATEGORY_SELECTED,
-    ADD_ITEM, FETCH_ITEMS
+    FETCH_ITEMS,
+    CREATE_ITEM
 } from "./types";
 
 export const signIn = (userId) => {
@@ -27,13 +28,12 @@ export const selectCategory = (category) => {
 };
 
 export const fetchItems  = () => async dispatch => {
-    const response = await groceries.get('/get/item');
+    const response = await groceries.get('/item');
     dispatch({type: FETCH_ITEMS, payload: response.data})
 };
 
-export const addItem = (item) => {
-    return {
-        type: ADD_ITEM,
-        payload: item
-    }
+export const createItem = (label) => async (dispatch, getState) => {
+    const {userId} = getState().auth;
+    const response = await groceries.post('/item', {label : label, userId});
+    dispatch({type: CREATE_ITEM, payload: response.data});
 };

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Item = require('../models/item.model');
 
-router.get('/get/item', (req, res) => {
+router.get('/item', (req, res) => {
     const category = req.query.value;
     Item.find({category: category}, (err, data) => {
         if (err) return res.json({success: false, error: err});
@@ -10,24 +10,15 @@ router.get('/get/item', (req, res) => {
     });
 });
 
-// router.get('/get/entry/:id', (req, res) => {
-//     Entry.findOne({_id: req.params.id}, (err, data) => {
-//         if (err) return res.json({success: false, error: err});
-//         return res.json({success: true, data: data});
-//     });
-// });
-//
-// router.post('/post/entry', (req, res) => {
-//     const entry = new Entry();
-//     entry.firstName = req.body.firstName;
-//     entry.lastName = req.body.lastName;
-//     entry.phoneNumber = req.body.phoneNumber;
-//     entry.save((err) => {
-//         if (err) return res.json({success: false, error: err});
-//         return res.json({success: true});
-//     });
-// });
-//
+router.post('/item', (req, res) => {
+    const item = new Item();
+    item.label = req.body.label;
+    item.save((err, data) => {
+        if (err) return res.json({success: false, error: err});
+        return res.json(data);
+    });
+});
+
 // router.post('/patch/entry/:id', (req, res) => {
 //     const id = req.params.id;
 //     const update = req.body;
