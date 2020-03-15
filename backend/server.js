@@ -3,12 +3,12 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
-const entry = require('./routes/entry.route');
+const item = require('./routes/item.route');
 
 const API_PORT = 3001;
 const app = express();
 app.use(cors());
-const dbRoute = 'mongodb+srv://admin:Or7XXfw3WCRbi1HF@phonebook-q7m81.mongodb.net/phonebook?retryWrites=true&w=majority';
+const dbRoute = 'mongodb+srv://admin:yO8zBSBv5M4ccFLF@groceries-jxsdg.mongodb.net/groceries?retryWrites=true&w=majority'; //TODO here
 
 // connect to db
 mongoose.connect(dbRoute, {useNewUrlParser: true});
@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 app.use(logger('dev'));
 
 // add routes
-app.use('/api', entry);
+app.use('/api', item);
 
 // launch backend into a port
 app.listen(API_PORT, () => console.log('Server is up and running on port number ' + API_PORT));
