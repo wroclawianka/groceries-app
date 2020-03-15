@@ -19,13 +19,13 @@ router.post('/item', (req, res) => {
     });
 });
 
-// router.post('/patch/entry/:id', (req, res) => {
-//     const id = req.params.id;
-//     const update = req.body;
-//     Entry.findByIdAndUpdate({_id: id}, update, {upsert: true}, (err) => {
-//         if (err) return res.json({success: false, error: err});
-//         return res.json({success: true});
-//     });
-// });
+router.patch('/item/:id', (req, res) => {
+    const id = req.params.id;
+    const update = req.body;
+    Item.findByIdAndUpdate({_id: id}, update, {upsert: true}, (err) => {
+        if (err) return res.json({success: false, error: err});
+        return res.json({success: true});
+    });
+});
 
 module.exports = router;
