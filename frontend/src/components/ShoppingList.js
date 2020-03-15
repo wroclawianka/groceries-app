@@ -1,4 +1,5 @@
 import React from "react";
+import {connect} from 'react-redux';
 import {makeStyles} from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -8,6 +9,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import ListSubheader from '@material-ui/core/ListSubheader';
 
 import CategorySelector from "./CategorySelector";
+import {fetchItems} from '../actions'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -25,17 +27,18 @@ const useStyles = makeStyles(theme => ({
 const Items = (props) => {
     const classes = useStyles();
     const handleToggle = () => {};
+    let items = props.items || [];
     return (
         <List className={classes.list}>
-            {props.items.map(value => {
-                const labelId = `checkbox-list-secondary-label-${value}`;
+            {items.map(item => {
+                const labelId = `checkbox-list-secondary-label-${item._id}`;
                 return (
-                    <ListItem key={value} button>
-                        <ListItemText id={labelId} primary={`${value}`}/>
+                    <ListItem key={item._id} button>
+                        <ListItemText id={labelId} primary={item.label}/>
                         <ListItemSecondaryAction>
                             <Checkbox
                                 edge="end"
-                                onChange={handleToggle(value)}
+                                onChange={handleToggle(item._id)}
                                 inputProps={{'aria-labelledby': labelId}}
                             />
                         </ListItemSecondaryAction>
@@ -46,7 +49,7 @@ const Items = (props) => {
     )
 };
 
-const CompletedItems = (props) => {
+/*const CompletedItems = (props) => {
     const classes = useStyles();
     const handleToggle = () => {};
 
@@ -72,20 +75,34 @@ const CompletedItems = (props) => {
             })}
         </List>
     );
+};*/
+
+class ShoppingList extends React.Component{
+    componentDidMount() {
+        this.props.fetchItems();
+    }
+    //const classes = useStyles();
+    //let shoppingList = [0, 1, 2, 3];
+    //let completedItems = ["A", "B", "C"];
+
+    render() {
+        return (
+            <div>
+                <CategorySelector/>
+                <Items items={this.props.itemList.items}/>
+                {/*<CompletedItems items={["A", "B", "C"]}/>*/}
+            </div>
+        )
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+        itemList: state.itemList || {}
+    }
 };
 
-const ShoppingList = () => {
-    const classes = useStyles();
-    let shoppingList = [0, 1, 2, 3];
-    let completedItems = ["A", "B", "C"];
-
-    return (
-        <div className={classes.root}>
-            <CategorySelector/>
-            <Items items={shoppingList}/>
-            <CompletedItems items={completedItems}/>
-        </div>
-    )
-};
-
-export default ShoppingList;
+export default connect(
+    mapStateToProps,
+    {fetchItems}
+)(ShoppingList);
