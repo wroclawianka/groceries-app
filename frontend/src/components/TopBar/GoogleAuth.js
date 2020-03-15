@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Button} from "@material-ui/core";
-import {signIn, signOut} from "../actions";
+import {signIn, signOut} from "../../actions";
 
 const buttonStyle = {
     color: "#ffffff"

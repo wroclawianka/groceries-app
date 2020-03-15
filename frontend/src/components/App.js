@@ -1,8 +1,8 @@
 import React from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
-import TopBar from "./TopBar";
-import ShoppingList from "./ShoppingList";
-import BottomNav from "./BottomNav";
+import TopBar from "./TopBar/TopBar";
+import ShoppingList from "./ShoppingList/ShoppingList";
+import BottomNav from "./BottomNav/BottomNav";
 
 const App = () => {
     return (
