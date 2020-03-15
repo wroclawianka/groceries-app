@@ -5,6 +5,7 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import Checkbox from "@material-ui/core/Checkbox";
 import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
+import BoughtItemModal from "./BoughtItemModal";
 
 const useStyles = makeStyles(theme => ({
     list: {
@@ -15,24 +16,31 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ListItems = (props) => {
+    const [openModal, setOpenModal] = React.useState(false);
     const classes = useStyles();
-    const handleToggle = () => {
-    };
     let items = props.items || [];
     return (
         <List className={classes.list}>
             {items.map(item => {
                 const labelId = `checkbox-list-secondary-label-${item._id}`;
+                const handleOpen = () => {
+                    setOpenModal(true);
+                };
+                const handleClose = () => {
+                    setOpenModal(true);
+                    props.setAsBought(item._id, true);
+                };
                 return (
                     <ListItem key={item._id} button>
                         <ListItemText id={labelId} primary={item.label}/>
                         <ListItemSecondaryAction>
                             <Checkbox
                                 edge="end"
-                                onChange={handleToggle(item._id)}
+                                onChange={handleOpen}
                                 inputProps={{'aria-labelledby': labelId}}
                             />
                         </ListItemSecondaryAction>
+                        <BoughtItemModal open={openModal} id={item._id} title={item.label} handleClose={handleClose}/>
                     </ListItem>
                 );
             })}

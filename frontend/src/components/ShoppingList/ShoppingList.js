@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from 'react-redux';
 import {makeStyles} from '@material-ui/core/styles';
 import CategorySelector from "./CategorySelector";
-import {fetchItems} from '../../actions'
+import {fetchItems, editItem} from '../../actions'
 import ListItems from "./ListItems";
 import AddItem from "./AddItem";
 
@@ -53,7 +53,7 @@ class ShoppingList extends React.Component{
             <div>
                 <CategorySelector/>
                 <AddItem/>
-                <ListItems items={this.props.itemList.items}/>
+                <ListItems items={this.props.itemList.items}  setAsBought={this.props.editItem}/>
             </div>
         )
     }
@@ -67,5 +67,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
     mapStateToProps,
-    {fetchItems}
+    {fetchItems, editItem}
 )(ShoppingList);
