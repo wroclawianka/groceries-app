@@ -5,14 +5,7 @@ import CategorySelector from "./CategorySelector";
 import {fetchItems, editItem} from '../../actions'
 import ListItems from "./ListItems";
 import AddItem from "./AddItem";
-
-const useStyles = makeStyles(theme => ({
-    root: {
-        minWidth: "280px",
-        width: "fit-content",
-        margin: "auto"
-    }
-}));
+import classes from '../../styles/styles.module.css'
 
 
 /*const CompletedItems = (props) => {
@@ -50,7 +43,7 @@ class ShoppingList extends React.Component{
 
     render() {
         return (
-            <div>
+            <div className={classes.shoppingList}>
                 <CategorySelector/>
                 <AddItem/>
                 <ListItems items={this.props.itemList.items}  setAsBought={this.props.editItem}/>
