@@ -6,6 +6,7 @@ const ItemSchema = new Schema(
         id: Number,
         label: String,
         completed: Boolean,
+        cost: Number
     }
 );
 
