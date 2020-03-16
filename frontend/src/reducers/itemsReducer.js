@@ -10,7 +10,7 @@ export default (state = null, action) => {
     switch (action.type) {
         case FETCH_ITEMS:
             const items = _.groupBy(action.payload, "completed");
-            return {...state, items: items.false, itemsCompleted: items.true};
+            return {...state, items: items.false, completed: items.true};
         case CREATE_ITEM:
             return {...state, item: action.payload};
         case SELECT_ITEM:

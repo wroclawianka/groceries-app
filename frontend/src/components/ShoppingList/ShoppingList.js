@@ -6,6 +6,7 @@ import {fetchItems, editItem} from '../../actions'
 import ListItems from "./ListItems";
 import AddItem from "./AddItem";
 import classes from '../../styles/styles.module.css'
+import ListCompletedItems from "./ListCompletedItems";
 
 
 /*const CompletedItems = (props) => {
@@ -36,7 +37,7 @@ import classes from '../../styles/styles.module.css'
     );
 };*/
 
-class ShoppingList extends React.Component{
+class ShoppingList extends React.Component {
     componentDidMount() {
         this.props.fetchItems();
     }
@@ -47,6 +48,7 @@ class ShoppingList extends React.Component{
                 <CategorySelector/>
                 <AddItem/>
                 <ListItems items={this.props.itemList.items}/>
+                <ListCompletedItems items={this.props.itemList.completed}/>
             </div>
         )
     }
