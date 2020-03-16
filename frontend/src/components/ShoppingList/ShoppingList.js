@@ -46,7 +46,7 @@ class ShoppingList extends React.Component{
             <div className={classes.shoppingList}>
                 <CategorySelector/>
                 <AddItem/>
-                <ListItems items={this.props.itemList.items}  setAsBought={this.props.editItem}/>
+                <ListItems items={this.props.itemList.items}/>
             </div>
         )
     }

@@ -13,6 +13,7 @@ router.get('/item', (req, res) => {
 router.post('/item', (req, res) => {
     const item = new Item();
     item.label = req.body.label;
+    item.completed = false;
     item.save((err, data) => {
         if (err) return res.json({success: false, error: err});
         return res.json(data);
