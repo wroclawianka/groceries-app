@@ -2,7 +2,8 @@ import groceries from "../apis/groceries";
 import {
     SIGN_IN,
     SIGN_OUT,
-    CATEGORY_SELECTED,
+    FETCH_CATEGORIES,
+    SELECT_CATEGORY,
     FETCH_ITEMS,
     CREATE_ITEM,
     SELECT_ITEM,
@@ -22,9 +23,14 @@ export const signOut = () => {
     }
 };
 
+export const fetchCategories = () => async dispatch => {
+    const response = await groceries.get('/category');
+    dispatch({type: FETCH_CATEGORIES, payload: response.data})
+};
+
 export const selectCategory = (category) => {
     return {
-        type: CATEGORY_SELECTED,
+        type: SELECT_CATEGORY,
         payload: category
     }
 };

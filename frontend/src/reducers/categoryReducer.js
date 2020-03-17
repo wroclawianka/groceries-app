@@ -1,21 +1,12 @@
-import {combineReducers} from "redux";
+import {FETCH_CATEGORIES, SELECT_CATEGORY} from "../actions/types";
 
-const categoriesReducer = () => {
-    return [
-        {id: 0, label: 'All'},
-        {id: 1, label: 'Lunch'},
-        {id: 2, label: 'Christmas Dinner'}
-    ]
-};
-
-const selectedCategoryReducer = (selectedCategory = null, action) => {
-    if (action.type === 'CATEGORY_SELECTED') {
-        return action.payload
+export default (state = null, action) => {
+    switch (action.type) {
+        case FETCH_CATEGORIES:
+            return {...state, list: action.payload};
+        case SELECT_CATEGORY:
+            return {...state, selected: action.payload};
+        default:
+            return state;
     }
-    return selectedCategory;
 };
-
-export default combineReducers({
-    list: categoriesReducer,
-    selected: selectedCategoryReducer
-});

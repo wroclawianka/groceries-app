@@ -14,8 +14,17 @@ class AddItem extends React.Component {
 
     render() {
         return (
-            <form noValidate autoComplete="off" className={classes.addItem}>
-                <TextField id="add-item" label="Add item" variant="outlined" onKeyDown={this.handleKeyDown}/>
+            <form
+                noValidate
+                autoComplete="off"
+                className={classes.addItem}
+            >
+                <TextField
+                    id="add-item"
+                    label="Add item"
+                    variant="outlined"
+                    onKeyDown={this.handleKeyDown}
+                />
             </form>
         )
     }

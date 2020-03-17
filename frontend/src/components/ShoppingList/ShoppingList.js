@@ -1,51 +1,28 @@
 import React from "react";
 import {connect} from 'react-redux';
-import {makeStyles} from '@material-ui/core/styles';
-import CategorySelector from "./CategorySelector";
-import {fetchItems, editItem} from '../../actions'
-import ListItems from "./ListItems";
 import AddItem from "./AddItem";
-import classes from '../../styles/styles.module.css'
+import CategorySelector from "./CategorySelector";
+import ListItems from "./ListItems";
 import ListCompletedItems from "./ListCompletedItems";
-
-
-/*const CompletedItems = (props) => {
-    const classes = useStyles();
-    const handleToggle = () => {};
-
-    return (
-        <List
-            subheader={<ListSubheader component="div">Completed</ListSubheader>}
-            className={classes.list}
-        >
-            {props.items.map(value => {
-                const labelId = `checkbox-list-secondary-label-${value}`;
-                return (
-                    <ListItem key={value} button>
-                        <ListItemText id={labelId} primary={`${value}`}/>
-                        <ListItemSecondaryAction>
-                            <Checkbox
-                                edge="end"
-                                onChange={handleToggle(value)}
-                                inputProps={{'aria-labelledby': labelId}}
-                            />
-                        </ListItemSecondaryAction>
-                    </ListItem>
-                );
-            })}
-        </List>
-    );
-};*/
+import classes from '../../styles/styles.module.css'
+import {fetchCategories, fetchItems, editItem} from '../../actions'
 
 class ShoppingList extends React.Component {
     componentDidMount() {
+        this.props.fetchCategories();
         this.props.fetchItems();
+    }
+
+    renderCategoriesSelector() {
+        if(this.props.categories) {
+            return <CategorySelector/>
+        }
     }
 
     render() {
         return (
             <div className={classes.shoppingList}>
-                <CategorySelector/>
+                {this.renderCategoriesSelector()}
                 <AddItem/>
                 <ListItems items={this.props.itemList.items}/>
                 <ListCompletedItems items={this.props.itemList.completed}/>
@@ -56,11 +33,12 @@ class ShoppingList extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        itemList: state.itemList || {}
+        itemList: state.itemList || {},
+        categories: state.categories
     }
 };
 
 export default connect(
     mapStateToProps,
-    {fetchItems, editItem}
+    {fetchCategories, fetchItems, editItem}
 )(ShoppingList);
