@@ -21,7 +21,6 @@ class App extends React.Component {
                         <Route path="/" exact component={ShoppingList}/>
                     </div>
                 </BrowserRouter>
-                <BottomNav/>
             </div>
         );
     }
