@@ -4,6 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const item = require('./routes/item.route');
+const category = require('./routes/category.route');
 
 const API_PORT = 3001;
 const app = express();
@@ -27,6 +28,7 @@ app.use(logger('dev'));
 
 // add routes
 app.use('/api', item);
+app.use('/api', category);
 
 // launch backend into a port
 app.listen(API_PORT, () => console.log('Server is up and running on port number ' + API_PORT));
