@@ -4,18 +4,20 @@ import TopBar from "./TopBar/TopBar";
 import ShoppingList from "./ShoppingList/ShoppingList";
 import BottomNav from "./BottomNav/BottomNav";
 
-const App = () => {
-    return (
-        <div>
-            <TopBar/>
-            <BrowserRouter>
-                <div>
-                    <Route path="/" exact component={ShoppingList}/>
-                </div>
-            </BrowserRouter>
-            <BottomNav/>
-        </div>
-    );
-};
+class App extends React.Component {
+    render() {
+        return (
+            <div>
+                <TopBar/>
+                <BrowserRouter>
+                    <div>
+                        <Route path="/" exact component={ShoppingList}/>
+                    </div>
+                </BrowserRouter>
+                <BottomNav/>
+            </div>
+        );
+    }
+}
 
 export default App;
