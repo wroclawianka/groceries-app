@@ -8,7 +8,6 @@ import Button from "@material-ui/core/Button";
 import {connect} from "react-redux";
 import {editItem} from "../../actions";
 
-
 class BoughtItemModal extends React.Component {
     constructor(props) {
         super(props);
@@ -41,8 +40,14 @@ class BoughtItemModal extends React.Component {
 
     render() {
         return (
-            <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">{this.state.item.label}</DialogTitle>
+            <Dialog
+                open={this.state.open}
+                onClose={this.handleClose}
+                aria-labelledby="form-dialog-title"
+            >
+                <DialogTitle id="form-dialog-title">
+                    {this.state.item.label}
+                </DialogTitle>
                 <DialogContent>
                     <TextField
                         autoFocus
@@ -56,14 +61,17 @@ class BoughtItemModal extends React.Component {
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={this.handleClose} color="primary">
+                    <Button
+                        onClick={this.handleClose}
+                        color="primary"
+                    >
                         Confirm
                     </Button>
                 </DialogActions>
             </Dialog>
         )
     }
-};
+}
 
 const mapStateToProps = (state) => {
     return {
