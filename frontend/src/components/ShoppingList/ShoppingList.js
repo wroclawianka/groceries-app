@@ -5,14 +5,8 @@ import CategorySelector from "./CategorySelector";
 import ListItems from "./ListItems";
 import ListCompletedItems from "./ListCompletedItems";
 import classes from '../../styles/styles.module.css'
-import {fetchCategories, fetchItems} from '../../actions'
 
 class ShoppingList extends React.Component {
-    componentDidMount() {
-        this.props.fetchCategories();
-        this.props.fetchItems();
-    }
-
     render() {
         return (
             <div className={classes.shoppingList}>
@@ -31,7 +25,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(
-    mapStateToProps,
-    {fetchCategories, fetchItems}
-)(ShoppingList);
+export default connect(mapStateToProps)(ShoppingList);
