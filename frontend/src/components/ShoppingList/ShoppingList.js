@@ -5,7 +5,7 @@ import CategorySelector from "./CategorySelector";
 import ListItems from "./ListItems";
 import ListCompletedItems from "./ListCompletedItems";
 import classes from '../../styles/styles.module.css'
-import {fetchCategories, fetchItems, editItem} from '../../actions'
+import {fetchCategories, fetchItems} from '../../actions'
 
 class ShoppingList extends React.Component {
     componentDidMount() {
@@ -13,16 +13,10 @@ class ShoppingList extends React.Component {
         this.props.fetchItems();
     }
 
-    renderCategoriesSelector() {
-        if(this.props.categories) {
-            return <CategorySelector/>
-        }
-    }
-
     render() {
         return (
             <div className={classes.shoppingList}>
-                {this.renderCategoriesSelector()}
+                <CategorySelector/>
                 <AddItem/>
                 <ListItems items={this.props.itemList.items}/>
                 <ListCompletedItems items={this.props.itemList.completed}/>
@@ -33,12 +27,11 @@ class ShoppingList extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        itemList: state.itemList || {},
-        categories: state.categories
+        itemList: state.itemList || {}
     }
 };
 
 export default connect(
     mapStateToProps,
-    {fetchCategories, fetchItems, editItem}
+    {fetchCategories, fetchItems}
 )(ShoppingList);

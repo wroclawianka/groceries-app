@@ -21,22 +21,27 @@ const useStyles = makeStyles(() =>
 
 const CategorySelector = (props) => {
     const classes = useStyles();
-    let selectedCategory = props.categories.selected || props.categories.list[0]._id;
     const handleChange = event => {
         props.selectCategory(event.target.value);
     };
-
-    return (
-        <FormControl className={classes.formControl}>
-            <Select value={selectedCategory} onChange={handleChange}>{
-                props.categories.list.map(category => {
-                    return (
-                        <MenuItem value={category._id} key={category._id}>{category.label}</MenuItem>
-                    )
-                })
-            }</Select>
-        </FormControl>
-    )
+    if (props.categories) {
+        let selectedCategory = props.categories.selected || props.categories.list[0]._id;
+        return (
+            <div className={classes.root}>
+                <FormControl className={classes.formControl}>
+                    <Select value={selectedCategory} onChange={handleChange}>{
+                        props.categories.list.map(category => {
+                            return (
+                                <MenuItem value={category._id} key={category._id}>{category.label}</MenuItem>
+                            )
+                        })
+                    }</Select>
+                </FormControl>
+            </div>
+        )
+    } else {
+        return null
+    }
 };
 
 const mapStateToProps = state => {
@@ -45,4 +50,7 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps, {selectCategory})(CategorySelector);
+export default connect(
+    mapStateToProps,
+    {selectCategory}
+)(CategorySelector);
