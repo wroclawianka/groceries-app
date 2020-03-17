@@ -25,17 +25,18 @@ const CategorySelector = (props) => {
         props.selectCategory(event.target.value);
     };
     if (props.categories) {
-        let selectedCategory = props.categories.selected || props.categories.list[0]._id;
+        let selectedCategory = props.categories.selected || 0;
         return (
             <div className={classes.root}>
                 <FormControl className={classes.formControl}>
-                    <Select value={selectedCategory} onChange={handleChange}>{
-                        props.categories.list.map(category => {
+                    <Select value={selectedCategory} onChange={handleChange}>
+                        <MenuItem value={0} key="all">All</MenuItem>
+                        {props.categories.list.map(category => {
                             return (
                                 <MenuItem value={category._id} key={category._id}>{category.label}</MenuItem>
                             )
                         })
-                    }</Select>
+                        }</Select>
                 </FormControl>
             </div>
         )
