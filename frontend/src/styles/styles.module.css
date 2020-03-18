@@ -4,6 +4,11 @@
     min-width: fit-content;
 }
 
+.itemsList {
+    width: 100%;
+    max-width: 360px;
+}
+
 .addItem {
     margin: auto;
     width: max-content;
