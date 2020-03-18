@@ -1,7 +1,7 @@
 # Groceries App
    - :mega: app for managing groceries of a company with possibilities to add item, mark and bought and specify cost
    - :wrench: React, Redux, Node.js, MongoDB
-   - :date: March 2010
+   - :date: March 2020
    
 ## Getting started
 
