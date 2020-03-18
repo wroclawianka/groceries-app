@@ -21,7 +21,7 @@ class ListItems extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.itemList !== this.props.itemList) {
+        if (prevProps.itemList.items !== this.props.itemList.items) {
             this.setState({
                 ...this.state,
                 items: (_.isEmpty(this.props.itemList)) ? [] : this.props.itemList.items,
@@ -47,36 +47,40 @@ class ListItems extends React.Component {
     };
 
     render() {
-        return (
-            <div>
-                <List classes={classes.itemsList}>
-                    {this.state.items.map(item => {
-                        const labelId = `checkbox-list-secondary-label-${item._id}`;
-                        const handleOpen = () => {
-                            this.props.selectItem(item);
-                            this.setState({
-                                ...this.state,
-                                openModal: true,
-                                selectedItem: item
-                            })
-                        };
-                        return (
-                            <ListItem key={item._id} button>
-                                <ListItemText id={labelId} primary={item.label}/>
-                                <ListItemSecondaryAction>
-                                    <Checkbox
-                                        edge="end"
-                                        onChange={handleOpen}
-                                        inputProps={{'aria-labelledby': labelId}}
-                                    />
-                                </ListItemSecondaryAction>
-                            </ListItem>
-                        );
-                    })}
-                </List>
-                {this.renderModal()}
-            </div>
-        )
+        if(this.state.items) {
+            return (
+                <div>
+                    <List className={classes.itemsList}>
+                        {this.state.items.map(item => {
+                            const labelId = `checkbox-list-secondary-label-${item._id}`;
+                            const handleOpen = () => {
+                                this.props.selectItem(item);
+                                this.setState({
+                                    ...this.state,
+                                    openModal: true,
+                                    selectedItem: item
+                                })
+                            };
+                            return (
+                                <ListItem key={item._id} button>
+                                    <ListItemText id={labelId} primary={item.label}/>
+                                    <ListItemSecondaryAction>
+                                        <Checkbox
+                                            edge="end"
+                                            onChange={handleOpen}
+                                            inputProps={{'aria-labelledby': labelId}}
+                                        />
+                                    </ListItemSecondaryAction>
+                                </ListItem>
+                            );
+                        })}
+                    </List>
+                    {this.renderModal()}
+                </div>
+            )
+        } else {
+            return null;
+        }
     }
 }
 
