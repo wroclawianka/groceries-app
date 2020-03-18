@@ -13,9 +13,7 @@ class ShoppingList extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.categories &&
-            (prevProps.categories && prevProps.categories.selected !== this.props.categories.selected)
-        ) {
+        if (this.props.categories && (prevProps !== this.props)) {
             this.fetchItemFromSelectedCategory()
         }
     }
