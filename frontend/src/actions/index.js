@@ -35,8 +35,9 @@ export const selectCategory = (category) => {
     }
 };
 
-export const fetchItems = () => async dispatch => {
-    const response = await groceries.get('/item');
+export const fetchItems = (category) => async dispatch => {
+    const params = {category};
+    const response = await groceries.get('/item', {params});
     dispatch({type: FETCH_ITEMS, payload: response.data})
 };
 
