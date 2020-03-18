@@ -1,5 +1,5 @@
 {
-  "name": "phonebook",
+  "name": "groceries-app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wroclawianka/phonebook.git"
+    "url": "git+https://github.com/wroclawianka/groceries-app.git"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wroclawianka/phonebook/issues"
+    "url": "https://github.com/wroclawianka/groceries-app/issues"
   },
-  "homepage": "https://github.com/wroclawianka/phonebook#readme",
+  "homepage": "https://github.com/wroclawianka/groceries-app#readme",
   "dependencies": {
     "concurrently": "^4.1.1"
   }
