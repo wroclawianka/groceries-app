@@ -21,11 +21,13 @@ const useStyles = makeStyles(() =>
 
 const CategorySelector = (props) => {
     const classes = useStyles();
+
     const handleChange = event => {
         let category = event.target.value;
         if (category === 0) category = null;
         props.selectCategory(category);
     };
+
     if (props.categories) {
         let selectedCategory = props.categories.selected || 0;
         return (
