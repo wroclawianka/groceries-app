@@ -31,7 +31,7 @@ class AddItem extends React.Component {
 }
 
 const formWrapped = reduxForm({
-    form: "streamCreate"
+    form: "itemCreate"
 })(AddItem);
 
 export default connect(null, {createItem})(formWrapped);
