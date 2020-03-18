@@ -5,29 +5,81 @@ import DialogContent from "@material-ui/core/DialogContent";
 import TextField from "@material-ui/core/TextField";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
+import {connect} from "react-redux";
+import {editItem} from "../../actions";
 
+class BoughtItemModal extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            open: true,
+            item: {
+                ...props.item,
+                cost: 0
+            },
+        };
+    }
 
-const BoughtItemModal = (props) => {
-    return  (
-        <Dialog open={props.open} onClose={props.handleClose} aria-labelledby="form-dialog-title">
-            <DialogTitle id="form-dialog-title">Bread</DialogTitle>
-            <DialogContent>
-                <TextField
-                    autoFocus
-                    margin="dense"
-                    id="price"
-                    label="Price"
-                    type="currency"
-                    fullWidth
-                />
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={props.handleClose} color="primary">
-                    Confirm
-                </Button>
-            </DialogActions>
-        </Dialog>
-    )
+    handleChange = (event) => {
+        this.setState({
+            item: {
+                ...this.state.item,
+                cost: event.target.value
+            }
+        });
+    };
+
+    handleClose = () => {
+        this.setState({open: false});
+        const item = {
+            ...this.state.item,
+            completed: true
+        };
+        this.props.editItem(item);
+    };
+
+    render() {
+        return (
+            <Dialog
+                open={this.state.open}
+                onClose={this.handleClose}
+                aria-labelledby="form-dialog-title"
+            >
+                <DialogTitle id="form-dialog-title">
+                    {this.state.item.label}
+                </DialogTitle>
+                <DialogContent>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="price"
+                        label="Price"
+                        value={this.state.item.cost}
+                        type="number"
+                        fullWidth
+                        onChange={this.handleChange}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button
+                        onClick={this.handleClose}
+                        color="primary"
+                    >
+                        Confirm
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        )
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+        item: state.itemList.item
+    }
 };
 
-export default BoughtItemModal;
+export default connect(
+    mapStateToProps,
+    {editItem}
+)(BoughtItemModal);

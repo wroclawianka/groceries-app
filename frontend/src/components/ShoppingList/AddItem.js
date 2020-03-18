@@ -3,6 +3,7 @@ import {reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import {TextField} from "@material-ui/core";
 import {createItem} from '../../actions'
+import classes from '../../styles/styles.module.css'
 
 class AddItem extends React.Component {
     handleKeyDown = (e) => {
@@ -13,8 +14,17 @@ class AddItem extends React.Component {
 
     render() {
         return (
-            <form noValidate autoComplete="off">
-                <TextField id="add-item" label="Add item" variant="outlined" onKeyDown={this.handleKeyDown}/>
+            <form
+                noValidate
+                autoComplete="off"
+                className={classes.addItem}
+            >
+                <TextField
+                    id="add-item"
+                    label="Add item"
+                    variant="outlined"
+                    onKeyDown={this.handleKeyDown}
+                />
             </form>
         )
     }

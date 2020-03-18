@@ -1,59 +1,37 @@
 import React from "react";
 import {connect} from 'react-redux';
-import {makeStyles} from '@material-ui/core/styles';
-import CategorySelector from "./CategorySelector";
-import {fetchItems, editItem} from '../../actions'
-import ListItems from "./ListItems";
 import AddItem from "./AddItem";
+import CategorySelector from "./CategorySelector";
+import ListItems from "./ListItems";
+import ListCompletedItems from "./ListCompletedItems";
+import classes from '../../styles/styles.module.css'
+import {fetchCategories, fetchItems} from "../../actions";
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        minWidth: "280px",
-        width: "fit-content",
-        margin: "auto"
-    }
-}));
-
-
-/*const CompletedItems = (props) => {
-    const classes = useStyles();
-    const handleToggle = () => {};
-
-    return (
-        <List
-            subheader={<ListSubheader component="div">Completed</ListSubheader>}
-            className={classes.list}
-        >
-            {props.items.map(value => {
-                const labelId = `checkbox-list-secondary-label-${value}`;
-                return (
-                    <ListItem key={value} button>
-                        <ListItemText id={labelId} primary={`${value}`}/>
-                        <ListItemSecondaryAction>
-                            <Checkbox
-                                edge="end"
-                                onChange={handleToggle(value)}
-                                inputProps={{'aria-labelledby': labelId}}
-                            />
-                        </ListItemSecondaryAction>
-                    </ListItem>
-                );
-            })}
-        </List>
-    );
-};*/
-
-class ShoppingList extends React.Component{
+class ShoppingList extends React.Component {
     componentDidMount() {
-        this.props.fetchItems();
+        this.fetchItemFromSelectedCategory();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.categories &&
+            (prevProps.categories && prevProps.categories.selected !== this.props.categories.selected)
+        ) {
+            this.fetchItemFromSelectedCategory()
+        }
+    }
+
+    fetchItemFromSelectedCategory() {
+        let category = (this.props.categories) ? this.props.categories.selected : null;
+        this.props.fetchItems(category);
     }
 
     render() {
         return (
-            <div>
+            <div className={classes.shoppingList}>
                 <CategorySelector/>
                 <AddItem/>
-                <ListItems items={this.props.itemList.items}  setAsBought={this.props.editItem}/>
+                <ListItems items={this.props.itemList.items}/>
+                <ListCompletedItems items={this.props.itemList.completed}/>
             </div>
         )
     }
@@ -61,11 +39,9 @@ class ShoppingList extends React.Component{
 
 const mapStateToProps = (state) => {
     return {
-        itemList: state.itemList || {}
+        itemList: state.itemList || {},
+        categories: state.categories
     }
 };
 
-export default connect(
-    mapStateToProps,
-    {fetchItems, editItem}
-)(ShoppingList);
+export default connect(mapStateToProps, {fetchCategories, fetchItems})(ShoppingList);

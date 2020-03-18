@@ -1,0 +1,10 @@
+.shoppingList {
+    max-width: 290px;
+    margin: auto;
+    min-width: fit-content;
+}
+
+.addItem {
+    margin: auto;
+    width: max-content;
+}
