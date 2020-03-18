@@ -9,7 +9,6 @@ import {fetchCategories, fetchItems} from "../actions";
 class App extends React.Component {
     componentDidMount() {
         this.props.fetchCategories();
-        this.props.fetchItems();
     }
 
     render() {
