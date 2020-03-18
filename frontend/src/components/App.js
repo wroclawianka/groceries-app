@@ -2,9 +2,8 @@ import React from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
 import TopBar from "./TopBar/TopBar";
 import ShoppingList from "./ShoppingList/ShoppingList";
-import BottomNav from "./BottomNav/BottomNav";
 import {connect} from "react-redux";
-import {fetchCategories, fetchItems} from "../actions";
+import {fetchCategories} from "../actions";
 
 class App extends React.Component {
     componentDidMount() {
@@ -25,4 +24,4 @@ class App extends React.Component {
     }
 }
 
-export default connect(null, {fetchCategories, fetchItems})(App);
+export default connect(null, {fetchCategories})(App);
