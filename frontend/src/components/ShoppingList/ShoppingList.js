@@ -8,19 +8,12 @@ import classes from '../../styles/styles.module.css'
 import {fetchCategories, fetchItems} from "../../actions";
 
 class ShoppingList extends React.Component {
-    componentDidMount() {
-        this.fetchItemFromSelectedCategory();
-    }
 
     componentDidUpdate(prevProps) {
         if (this.props.categories && (prevProps !== this.props)) {
-            this.fetchItemFromSelectedCategory()
+            let category = (this.props.categories) ? this.props.categories.selected : null;
+            this.props.fetchItems(category);
         }
-    }
-
-    fetchItemFromSelectedCategory() {
-        let category = (this.props.categories) ? this.props.categories.selected : null;
-        this.props.fetchItems(category);
     }
 
     render() {
