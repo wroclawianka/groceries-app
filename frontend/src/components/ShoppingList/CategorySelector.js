@@ -1,5 +1,4 @@
 import React from "react";
-import {connect} from 'react-redux';
 import {createStyles, makeStyles} from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
