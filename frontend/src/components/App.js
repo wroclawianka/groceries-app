@@ -3,7 +3,7 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import TopBar from "./TopBar/TopBar";
 import ShoppingList from "./ShoppingList/ShoppingList";
 import {connect} from "react-redux";
-import {fetchCategories} from "../actions";
+import {fetchCategories, fetchItems} from "../actions";
 
 class App extends React.Component {
     componentDidMount() {
@@ -24,4 +24,4 @@ class App extends React.Component {
     }
 }
 
-export default connect(null, {fetchCategories})(App);
+export default connect(null, {fetchCategories, fetchItems})(App);
