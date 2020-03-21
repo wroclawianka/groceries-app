@@ -7,7 +7,6 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import BoughtItemModal from "./BoughtItemModal";
-import {selectItem, editItem} from '../../actions'
 import classes from '../../styles/styles.module.css'
 
 class ListItems extends React.Component {
@@ -15,18 +14,8 @@ class ListItems extends React.Component {
         super(props);
         this.state = {
             openModal: false,
-            items: (_.isEmpty(this.props.itemList)) ? [] : this.props.itemList.items,
             selectedItem: null
         };
-    }
-
-    componentDidUpdate(prevProps) {
-        if (prevProps.itemList.items !== this.props.itemList.items) {
-            this.setState({
-                ...this.state,
-                items: (_.isEmpty(this.props.itemList)) ? [] : this.props.itemList.items,
-            })
-        }
     }
 
     editItem = (item) => {
@@ -47,14 +36,13 @@ class ListItems extends React.Component {
     };
 
     render() {
-        if(this.state.items) {
+        if (this.props.items) {
             return (
                 <div>
                     <List className={classes.itemsList}>
-                        {this.state.items.map(item => {
+                        {this.props.items.map(item => {
                             const labelId = `checkbox-list-secondary-label-${item._id}`;
                             const handleOpen = () => {
-                                this.props.selectItem(item);
                                 this.setState({
                                     ...this.state,
                                     openModal: true,
@@ -84,10 +72,4 @@ class ListItems extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        itemList: state.itemList || {},
-    }
-};
-
-export default connect(mapStateToProps, {selectItem, editItem})(ListItems);
+export default ListItems;
