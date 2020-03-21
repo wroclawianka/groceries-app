@@ -8,12 +8,28 @@ import {createItem} from '../../actions'
 import classes from '../../styles/styles.module.css'
 
 class AddItem extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            itemName: ""
+        }
+    }
+
+    handleChange = (e) => {
+        console.log(e.target.value);
+        this.setState({itemName: e.target.value});
+    };
+
     handleKeyDown = (e) => {
         if (e.key === 'Enter') {
-            this.props.addItem(e.target.value);
+            this.addItem();
             e.preventDefault();
             e.target.value = "";
         }
+    };
+
+    addItem = () => {
+        this.props.addItem(this.state.itemName);
     };
 
     render() {
@@ -27,6 +43,8 @@ class AddItem extends React.Component {
                     id="add-item"
                     label="Add item"
                     variant="outlined"
+                    value={this.state.itemName}
+                    onChange={this.handleChange}
                     onKeyDown={this.handleKeyDown}
                 />
                 <div className={classes.addBtn}>
@@ -34,8 +52,10 @@ class AddItem extends React.Component {
                         size="small"
                         color="primary"
                         aria-label="add"
+                        disabled={!this.state.itemName}
+                        onClick={this.addItem}
                     >
-                        <AddIcon />
+                        <AddIcon/>
                     </Fab>
                 </div>
             </form>
