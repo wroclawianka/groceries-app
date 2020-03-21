@@ -13,12 +13,29 @@ class ShoppingList extends React.Component {
         super(props);
         this.state = {
             selectedCategory: "0",
-            items: null
+            itemsToBought: null,
+            itemsCompleted: null,
         }
     }
 
     componentDidMount() {
         this.props.fetchItems(this.state.selectCategory);
+    }
+
+    getSnapshotBeforeUpdate(prevProps) {
+        return {updateRequired: prevProps.items !== this.props.items};
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (snapshot.updateRequired) {
+            let items = Object.values(this.props.items);
+            items = _.groupBy(items, "completed");
+            this.setState({
+                ...this.state,
+                itemsToBought: items.false,
+                itemsCompleted: items.true
+            });
+        }
     }
 
     selectCategory = (selectedCategory) => {
