@@ -2,6 +2,8 @@ import React from "react";
 import {reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import {TextField} from "@material-ui/core";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from '@material-ui/icons/Add';
 import {createItem} from '../../actions'
 import classes from '../../styles/styles.module.css'
 
@@ -27,6 +29,15 @@ class AddItem extends React.Component {
                     variant="outlined"
                     onKeyDown={this.handleKeyDown}
                 />
+                <div className={classes.addBtn}>
+                    <Fab
+                        size="small"
+                        color="primary"
+                        aria-label="add"
+                    >
+                        <AddIcon />
+                    </Fab>
+                </div>
             </form>
         )
     }

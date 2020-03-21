@@ -15,3 +15,8 @@
     width: max-content;
     display: flex;
 }
+
+.addBtn {
+    padding-left: 10px;
+    margin: auto;
+}
