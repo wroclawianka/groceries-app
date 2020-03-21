@@ -4,11 +4,13 @@
     min-width: fit-content;
 }
 
+/* items list */
 .itemsList {
     width: 100%;
     max-width: 360px;
 }
 
+/* add item */
 .addItem {
     padding: 10px 0;
     margin: auto;
