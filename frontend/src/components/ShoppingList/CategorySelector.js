@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import {fetchCategories} from '../../actions'
+import {fetchCategories, selectCategory} from '../../actions'
 import classes from '../../styles/styles.module.css'
 
 class CategorySelector extends React.Component {
@@ -18,10 +18,11 @@ class CategorySelector extends React.Component {
     render() {
         if (this.props.categories) {
             let categories = Object.values(this.props.categories);
+            let selectedCategory = categories.find(cat => cat.selected === true);
             return (
                 <div className={classes.categorySelector}>
                     <FormControl className={classes.categorySelectorForm}>
-                        <Select value={this.props.selectedCategory} onChange={this.handleChange}>
+                        <Select value={selectedCategory._id} onChange={this.handleChange}>
                             {categories.map(category => {
                                 return (
                                     <MenuItem
@@ -44,11 +45,11 @@ class CategorySelector extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        categories: state.categories
+        categories: state.categories,
     }
 };
 
 export default connect(
     mapStateToProps,
-    {fetchCategories}
+    {fetchCategories, selectCategory}
 )(CategorySelector);

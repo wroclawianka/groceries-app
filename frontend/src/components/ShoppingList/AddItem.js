@@ -27,7 +27,8 @@ class AddItem extends React.Component {
     };
 
     addItem = () => {
-        this.props.createItem(this.state.itemName);
+        const selectedCategory = this.props.categories.find(cat => cat.selected);
+        this.props.createItem(this.state.itemName, selectedCategory._id);
         this.setState({itemName: ''});
     };
 
@@ -62,8 +63,12 @@ class AddItem extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {categories: Object.values(state.categories)}
+};
+
 const formWrapped = reduxForm({
     form: "itemCreate"
 })(AddItem);
 
-export default connect(null, {createItem})(formWrapped);
+export default connect(mapStateToProps, {createItem})(formWrapped);
