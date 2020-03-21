@@ -12,7 +12,7 @@ const useStyles = makeStyles(() =>
             padding: "20px 5px"
         },
         formControl: {
-            minWidth: 200,
+            minWidth: 250,
         },
     }),
 );

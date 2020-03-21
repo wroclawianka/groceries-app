@@ -1,5 +1,5 @@
 .shoppingList {
-    max-width: 260px;
+    max-width: 300px;
     margin: auto;
     min-width: fit-content;
 }
@@ -10,6 +10,13 @@
 }
 
 .addItem {
+    padding: 10px 0;
     margin: auto;
     width: max-content;
+    display: flex;
+}
+
+.addBtn {
+    padding-left: 10px;
+    margin: auto;
 }
