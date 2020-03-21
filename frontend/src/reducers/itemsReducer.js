@@ -9,14 +9,13 @@ import {
 export default (state = null, action) => {
     switch (action.type) {
         case FETCH_ITEMS:
-            const items = _.groupBy(action.payload, "completed");
-            return {...state, items: items.false, completed: items.true};
+            return {..._.mapKeys(action.payload, "_id")};
         case CREATE_ITEM:
-            return {...state, item: action.payload};
+            return {...state, [action.payload._id]: action.payload};
         case SELECT_ITEM:
-            return {...state, item: action.payload};
+            return {...state, [action.payload._id]: action.payload};
         case EDIT_ITEM:
-            return {...state, item: action.payload};
+            return {...state, [action.payload._id]: action.payload};
         default:
             return state;
     }

@@ -6,5 +6,5 @@ import itemsReducer from "./itemsReducer";
 export default combineReducers({
     auth: authReducer,
     categories: categoryReducer,
-    itemList: itemsReducer
+    items: itemsReducer
 });
