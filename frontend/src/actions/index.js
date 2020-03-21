@@ -41,9 +41,9 @@ export const fetchItems = (category) => async dispatch => {
     dispatch({type: FETCH_ITEMS, payload: response.data})
 };
 
-export const createItem = (label) => async (dispatch, getState) => {
+export const createItem = (label, categoryId) => async (dispatch, getState) => {
     const {userId} = getState().auth;
-    const response = await groceries.post('/item', {label: label, userId});
+    const response = await groceries.post('/item', {label: label, categoryId: categoryId, userId});
     dispatch({type: CREATE_ITEM, payload: response.data});
 };
 
