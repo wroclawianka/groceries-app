@@ -1,10 +1,12 @@
 import React from "react";
+import {connect} from 'react-redux';
 import Checkbox from "@material-ui/core/Checkbox";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import BoughtItemModal from "./BoughtItemModal";
+import {createItem, editItem} from '../../actions'
 import classes from '../../styles/styles.module.css'
 
 class ListItems extends React.Component {
@@ -70,4 +72,4 @@ class ListItems extends React.Component {
     }
 }
 
-export default ListItems;
+export default connect(null, {editItem})(ListItems);
