@@ -1,47 +1,52 @@
 import React from "react";
-import {createStyles, makeStyles} from '@material-ui/core/styles';
+import {connect} from 'react-redux';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import {fetchCategories} from '../../actions'
+import classes from '../../styles/styles.module.css'
 
-const useStyles = makeStyles(() =>
-    createStyles({
-        root: {
-            width: "min-content",
-            margin: "auto",
-            padding: "20px 5px"
-        },
-        formControl: {
-            minWidth: 250,
-        },
-    }),
-);
+class CategorySelector extends React.Component {
+    componentDidMount() {
+        this.props.fetchCategories();
+    }
 
-const CategorySelector = (props) => {
-    const classes = useStyles();
-
-    const handleChange = e => {
-        props.selectCategory(e.target.value);
+    handleChange = e => {
+        this.props.selectCategory(e.target.value);
     };
 
-    if (props.categories) {
-        let categories = Object.values(props.categories);
-        return (
-            <div className={classes.root}>
-                <FormControl className={classes.formControl}>
-                    <Select value={props.selectedCategory} onChange={handleChange}>
-                        {categories.map(category => {
-                            return (
-                                <MenuItem value={category._id} key={category._id}>{category.label}</MenuItem>
-                            )
-                        })
-                        }</Select>
-                </FormControl>
-            </div>
-        )
-    } else {
-        return null
+    render() {
+        if (this.props.categories) {
+            let categories = Object.values(this.props.categories);
+            return (
+                <div className={classes.categorySelector}>
+                    <FormControl className={classes.categorySelectorForm}>
+                        <Select value={this.props.selectedCategory} onChange={this.handleChange}>
+                            {categories.map(category => {
+                                return (
+                                    <MenuItem
+                                        value={category._id}
+                                        key={category._id}
+                                    >
+                                        {category.label}
+                                    </MenuItem>
+                                )
+                            })
+                            }</Select>
+                    </FormControl>
+                </div>
+            )
+        }
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+        categories: state.categories
     }
 };
 
-export default CategorySelector
+export default connect(
+    mapStateToProps,
+    {fetchCategories}
+)(CategorySelector);

@@ -6,7 +6,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import BoughtItemModal from "./BoughtItemModal";
-import {createItem, editItem} from '../../actions'
+import {editItem} from '../../actions'
 import classes from '../../styles/styles.module.css'
 
 class ListItems extends React.Component {
@@ -41,7 +41,6 @@ class ListItems extends React.Component {
                 <div>
                     <List className={classes.itemsList}>
                         {this.props.items.map(item => {
-                            const labelId = `checkbox-list-secondary-label-${item._id}`;
                             const handleOpen = () => {
                                 this.setState({
                                     ...this.state,
@@ -51,13 +50,9 @@ class ListItems extends React.Component {
                             };
                             return (
                                 <ListItem key={item._id} button>
-                                    <ListItemText id={labelId} primary={item.label}/>
+                                    <ListItemText primary={item.label}/>
                                     <ListItemSecondaryAction>
-                                        <Checkbox
-                                            edge="end"
-                                            onChange={handleOpen}
-                                            inputProps={{'aria-labelledby': labelId}}
-                                        />
+                                        <Checkbox edge="end"  onChange={handleOpen}/>
                                     </ListItemSecondaryAction>
                                 </ListItem>
                             );

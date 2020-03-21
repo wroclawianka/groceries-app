@@ -60,7 +60,6 @@ class ShoppingList extends React.Component {
         return (
             <div className={classes.shoppingList}>
                 <CategorySelector
-                    categories={this.props.categories}
                     selectedCategory={this.state.selectedCategory}
                     selectCategory={this.selectCategory}
                 />
@@ -74,7 +73,6 @@ class ShoppingList extends React.Component {
 const mapStateToProps = (state) => {
     return {
         items: state.items,
-        categories: state.categories
     }
 };
 

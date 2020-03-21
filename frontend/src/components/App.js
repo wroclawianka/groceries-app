@@ -2,14 +2,8 @@ import React from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
 import TopBar from "./TopBar/TopBar";
 import ShoppingList from "./ShoppingList/ShoppingList";
-import {connect} from "react-redux";
-import {fetchCategories, fetchItems} from "../actions";
 
 class App extends React.Component {
-    componentDidMount() {
-        this.props.fetchCategories();
-    }
-
     render() {
         return (
             <div>
@@ -24,4 +18,4 @@ class App extends React.Component {
     }
 }
 
-export default connect(null, {fetchCategories, fetchItems})(App);
+export default App;
