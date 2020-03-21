@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import {
     CREATE_ITEM,
-    SELECT_ITEM,
     EDIT_ITEM,
     FETCH_ITEMS
 } from "../actions/types";
@@ -11,8 +10,6 @@ export default (state = null, action) => {
         case FETCH_ITEMS:
             return {..._.mapKeys(action.payload, "_id")};
         case CREATE_ITEM:
-            return {...state, [action.payload._id]: action.payload};
-        case SELECT_ITEM:
             return {...state, [action.payload._id]: action.payload};
         case EDIT_ITEM:
             return {...state, [action.payload._id]: action.payload};

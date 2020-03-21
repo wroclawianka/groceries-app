@@ -16,7 +16,6 @@ class AddItem extends React.Component {
     }
 
     handleChange = (e) => {
-        console.log(e.target.value);
         this.setState({itemName: e.target.value});
     };
 
@@ -24,12 +23,13 @@ class AddItem extends React.Component {
         if (e.key === 'Enter') {
             this.addItem();
             e.preventDefault();
-            e.target.value = "";
         }
     };
 
     addItem = () => {
-        this.props.addItem(this.state.itemName);
+        const selectedCategory = this.props.categories.find(cat => cat.selected);
+        this.props.createItem(this.state.itemName, selectedCategory._id);
+        this.setState({itemName: ''});
     };
 
     render() {
@@ -63,8 +63,12 @@ class AddItem extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {categories: Object.values(state.categories)}
+};
+
 const formWrapped = reduxForm({
     form: "itemCreate"
 })(AddItem);
 
-export default connect(null, {createItem})(formWrapped);
+export default connect(mapStateToProps, {createItem})(formWrapped);

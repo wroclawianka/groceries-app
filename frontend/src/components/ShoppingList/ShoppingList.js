@@ -6,28 +6,32 @@ import CategorySelector from "./CategorySelector";
 import ListItems from "./ListItems";
 import ListCompletedItems from "./ListCompletedItems";
 import classes from '../../styles/styles.module.css'
-import {fetchItems, createItem, editItem, selectCategory} from "../../actions";
+import {fetchItems, selectCategory} from "../../actions";
 
 class ShoppingList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedCategory: "0",
             itemsToBought: null,
             itemsCompleted: null,
         }
     }
 
     componentDidMount() {
-        this.props.fetchItems(this.state.selectCategory);
+        this.props.fetchItems(this.props.selectedCategory || "0");
     }
 
     getSnapshotBeforeUpdate(prevProps) {
-        return {updateRequired: prevProps.items !== this.props.items};
+        const selectedCategoryChanged = prevProps.categories.find(cat => cat.selected) !== this.props.categories.find(cat => cat.selected);
+        const itemsChanged = prevProps.items !== this.props.items;
+        return {selectedCategoryChanged, itemsChanged};
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (snapshot.updateRequired) {
+        if (snapshot.selectedCategoryChanged) {
+            const selectedCategory = this.props.categories.find(cat => cat.selected);
+            this.props.fetchItems(selectedCategory._id);
+        } else if (snapshot.itemsChanged) {
             let items = Object.values(this.props.items);
             items = _.groupBy(items, "completed");
             this.setState({
@@ -38,26 +42,11 @@ class ShoppingList extends React.Component {
         }
     }
 
-    selectCategory = (selectedCategory) => {
-        this.setState({
-            selectedCategory: selectedCategory
-        });
-        this.props.fetchItems(selectedCategory);
-    };
-
-    addItem = (item) => {
-        this.props.createItem(item, this.state.selectedCategory)
-    };
-
-    editItem = (item) => {
-        this.props.editItem(item)
-    };
-
     renderLists() {
         if (this.props.items) {
             return (
                 <div>
-                    <ListItems items={this.state.itemsToBought} editItem={this.editItem}/>
+                    <ListItems items={this.state.itemsToBought}/>
                     <ListCompletedItems items={this.state.itemsCompleted}/>
                 </div>
             )
@@ -67,12 +56,8 @@ class ShoppingList extends React.Component {
     render() {
         return (
             <div className={classes.shoppingList}>
-                <CategorySelector
-                    categories={this.props.categories}
-                    selectedCategory={this.state.selectedCategory}
-                    selectCategory={this.selectCategory}
-                />
-                <AddItem addItem={this.addItem}/>
+                <CategorySelector/>
+                <AddItem/>
                 {this.renderLists()}
             </div>
         )
@@ -82,11 +67,11 @@ class ShoppingList extends React.Component {
 const mapStateToProps = (state) => {
     return {
         items: state.items,
-        categories: state.categories
+        categories: Object.values(state.categories)
     }
 };
 
 export default connect(
     mapStateToProps,
-    {fetchItems, createItem, editItem, selectCategory}
+    {fetchItems, selectCategory}
 )(ShoppingList);

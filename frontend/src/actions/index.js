@@ -6,7 +6,6 @@ import {
     SELECT_CATEGORY,
     FETCH_ITEMS,
     CREATE_ITEM,
-    SELECT_ITEM,
     EDIT_ITEM
 } from "./types";
 
@@ -46,13 +45,6 @@ export const createItem = (label, categoryId) => async (dispatch, getState) => {
     const {userId} = getState().auth;
     const response = await groceries.post('/item', {label: label, categoryId: categoryId, userId});
     dispatch({type: CREATE_ITEM, payload: response.data});
-};
-
-export const selectItem = (item) => {
-    return {
-        type: SELECT_ITEM,
-        payload: item
-    }
 };
 
 export const editItem = (item) => async dispatch => {
