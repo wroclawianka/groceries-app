@@ -19,11 +19,10 @@ class BoughtItemModal extends React.Component {
     }
 
     handleChange = (e) => {
-        const cost = Number(e.target.value).toFixed(2);
         this.setState({
             item: {
                 ...this.state.item,
-                cost: cost
+                cost: e.target.value
             }
         });
     };
