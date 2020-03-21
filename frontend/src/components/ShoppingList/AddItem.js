@@ -27,7 +27,7 @@ class AddItem extends React.Component {
     };
 
     addItem = () => {
-        this.props.addItem(this.state.itemName);
+        this.props.createItem(this.state.itemName);
         this.setState({itemName: ''});
     };
 

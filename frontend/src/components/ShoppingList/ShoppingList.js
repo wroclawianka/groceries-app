@@ -45,10 +45,6 @@ class ShoppingList extends React.Component {
         this.props.fetchItems(selectedCategory);
     };
 
-    addItem = (item) => {
-        this.props.createItem(item, this.state.selectedCategory)
-    };
-
     editItem = (item) => {
         this.props.editItem(item)
     };
@@ -72,7 +68,7 @@ class ShoppingList extends React.Component {
                     selectedCategory={this.state.selectedCategory}
                     selectCategory={this.selectCategory}
                 />
-                <AddItem addItem={this.addItem}/>
+                <AddItem/>
                 {this.renderLists()}
             </div>
         )
