@@ -16,7 +16,6 @@ class AddItem extends React.Component {
     }
 
     handleChange = (e) => {
-        console.log(e.target.value);
         this.setState({itemName: e.target.value});
     };
 
@@ -24,12 +23,12 @@ class AddItem extends React.Component {
         if (e.key === 'Enter') {
             this.addItem();
             e.preventDefault();
-            e.target.value = "";
         }
     };
 
     addItem = () => {
         this.props.addItem(this.state.itemName);
+        this.setState({itemName: ''});
     };
 
     render() {
