@@ -36,6 +36,8 @@ class CategorySelector extends React.Component {
                     </FormControl>
                 </div>
             )
+        } else {
+            return null
         }
     }
 }
