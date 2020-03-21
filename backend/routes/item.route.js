@@ -12,10 +12,11 @@ router.get('/item', (req, res) => {
 });
 
 router.post('/item', (req, res) => {
-    const item = new Item();
-    item.label = req.body.label;
-    item.categoryId = req.body.categoryId;
-    item.completed = false;
+    const item = new Item({
+        label: req.body.label,
+        categoryId: req.body.categoryId,
+        completed: false
+    });
     item.save((err, data) => {
         if (err) return res.json({success: false, error: err});
         return res.json(data);
