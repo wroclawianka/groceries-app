@@ -2,7 +2,6 @@ import React from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
 import TopBar from "./TopBar/TopBar";
 import ShoppingList from "./ShoppingList/ShoppingList";
-import BottomNav from "./BottomNav/BottomNav";
 import {connect} from "react-redux";
 import {fetchCategories, fetchItems} from "../actions";
 

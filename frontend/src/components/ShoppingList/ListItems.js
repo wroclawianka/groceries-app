@@ -1,60 +1,73 @@
 import React from "react";
-import {connect} from 'react-redux';
-import {makeStyles} from "@material-ui/core/styles";
 import Checkbox from "@material-ui/core/Checkbox";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import BoughtItemModal from "./BoughtItemModal";
-import {selectItem} from '../../actions'
+import classes from '../../styles/styles.module.css'
 
-const useStyles = makeStyles(theme => ({
-    list: {
-        width: '100%',
-        maxWidth: 360,
-        backgroundColor: theme.palette.background.paper,
-    },
-}));
+class ListItems extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            openModal: false,
+            selectedItem: null
+        };
+    }
 
-const ListItems = (props) => {
-    const [openModal, setOpenModal] = React.useState(false);
-    const classes = useStyles();
-    let items = props.items || [];
-    let selectedItem = null;
+    editItem = (item) => {
+        this.setState({
+            ...this.state,
+            openModal: false
+        });
+        this.props.editItem(item)
+    };
 
-    const renderModal = () => {
-        if (openModal) {
-            return <BoughtItemModal item={selectedItem}/>
+    renderModal = () => {
+        if (this.state.openModal) {
+            return <BoughtItemModal
+                item={this.state.selectedItem}
+                editItem={this.editItem}
+            />
         }
     };
 
-    return (
-        <div>
-            <List className={classes.list}>
-                {items.map(item => {
-                    const labelId = `checkbox-list-secondary-label-${item._id}`;
-                    const handleOpen = () => {
-                        props.selectItem(item);
-                        setOpenModal(true);
-                    };
-                    return (
-                        <ListItem key={item._id} button>
-                            <ListItemText id={labelId} primary={item.label}/>
-                            <ListItemSecondaryAction>
-                                <Checkbox
-                                    edge="end"
-                                    onChange={handleOpen}
-                                    inputProps={{'aria-labelledby': labelId}}
-                                />
-                            </ListItemSecondaryAction>
-                        </ListItem>
-                    );
-                })}
-            </List>
-            {renderModal()}
-        </div>
-    )
-};
+    render() {
+        if (this.props.items) {
+            return (
+                <div>
+                    <List className={classes.itemsList}>
+                        {this.props.items.map(item => {
+                            const labelId = `checkbox-list-secondary-label-${item._id}`;
+                            const handleOpen = () => {
+                                this.setState({
+                                    ...this.state,
+                                    openModal: true,
+                                    selectedItem: item
+                                })
+                            };
+                            return (
+                                <ListItem key={item._id} button>
+                                    <ListItemText id={labelId} primary={item.label}/>
+                                    <ListItemSecondaryAction>
+                                        <Checkbox
+                                            edge="end"
+                                            onChange={handleOpen}
+                                            inputProps={{'aria-labelledby': labelId}}
+                                        />
+                                    </ListItemSecondaryAction>
+                                </ListItem>
+                            );
+                        })}
+                    </List>
+                    {this.renderModal()}
+                </div>
+            )
+        } else {
+            return null;
+        }
+    }
+}
 
-export default connect(null, {selectItem})(ListItems);
+export default ListItems;

@@ -1,10 +1,8 @@
 import React from "react";
-import {connect} from 'react-redux';
 import {createStyles, makeStyles} from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import {selectCategory} from "../../actions";
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -21,19 +19,19 @@ const useStyles = makeStyles(() =>
 
 const CategorySelector = (props) => {
     const classes = useStyles();
-    const handleChange = event => {
-        let category = event.target.value;
-        if (category === 0) category = null;
-        props.selectCategory(category);
+
+    const handleChange = e => {
+        props.selectCategory(e.target.value);
     };
+
     if (props.categories) {
-        let selectedCategory = props.categories.selected || 0;
+        let categories = Object.values(props.categories);
         return (
             <div className={classes.root}>
+                {props.selectedCategory}
                 <FormControl className={classes.formControl}>
-                    <Select value={selectedCategory} onChange={handleChange}>
-                        <MenuItem value={0} key="all">All</MenuItem>
-                        {props.categories.list.map(category => {
+                    <Select value={props.selectedCategory} onChange={handleChange}>
+                        {categories.map(category => {
                             return (
                                 <MenuItem value={category._id} key={category._id}>{category.label}</MenuItem>
                             )
@@ -47,13 +45,4 @@ const CategorySelector = (props) => {
     }
 };
 
-const mapStateToProps = state => {
-    return {
-        categories: state.categories
-    };
-};
-
-export default connect(
-    mapStateToProps,
-    {selectCategory}
-)(CategorySelector);
+export default CategorySelector

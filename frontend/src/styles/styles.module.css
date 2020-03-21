@@ -1,7 +1,12 @@
 .shoppingList {
-    max-width: 290px;
+    max-width: 260px;
     margin: auto;
     min-width: fit-content;
+}
+
+.itemsList {
+    width: 100%;
+    max-width: 360px;
 }
 
 .addItem {

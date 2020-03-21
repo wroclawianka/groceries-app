@@ -5,8 +5,6 @@ import DialogContent from "@material-ui/core/DialogContent";
 import TextField from "@material-ui/core/TextField";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
-import {connect} from "react-redux";
-import {editItem} from "../../actions";
 
 class BoughtItemModal extends React.Component {
     constructor(props) {
@@ -73,13 +71,4 @@ class BoughtItemModal extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        item: state.itemList.item
-    }
-};
-
-export default connect(
-    mapStateToProps,
-    {editItem}
-)(BoughtItemModal);
+export default BoughtItemModal;

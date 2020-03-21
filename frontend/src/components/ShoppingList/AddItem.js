@@ -8,7 +8,9 @@ import classes from '../../styles/styles.module.css'
 class AddItem extends React.Component {
     handleKeyDown = (e) => {
         if (e.key === 'Enter') {
-            this.props.createItem(e.target.value);
+            this.props.addItem(e.target.value);
+            e.preventDefault();
+            e.target.value = "";
         }
     };
 
@@ -31,7 +33,7 @@ class AddItem extends React.Component {
 }
 
 const formWrapped = reduxForm({
-    form: "streamCreate"
+    form: "itemCreate"
 })(AddItem);
 
 export default connect(null, {createItem})(formWrapped);

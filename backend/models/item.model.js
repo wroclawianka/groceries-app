@@ -6,7 +6,7 @@ const ItemSchema = new Schema(
         label: String,
         completed: Boolean,
         cost: Number,
-        categoryId: Number
+        categoryId: String
     }
 );
 
