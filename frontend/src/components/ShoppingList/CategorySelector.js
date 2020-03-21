@@ -15,24 +15,19 @@ class CategorySelector extends React.Component {
         this.props.selectCategory(e.target.value);
     };
 
-    renderOption(category) {
+    renderOption(option) {
         return (
-            <MenuItem
-                value={category._id}
-                key={category._id}
-            >
-                {category.label}
-            </MenuItem>
+            <MenuItem value={option._id} key={option._id}>{option.label}</MenuItem>
         )
     }
 
-    renderOptions(options, selectedCategory) {
+    renderOptions(options, selectedOption) {
         return (
             <div className={classes.categorySelector}>
                 <FormControl className={classes.categorySelectorForm}>
-                    <Select value={selectedCategory._id} onChange={this.handleChange}>
-                        {categories.map(category => {
-                            return this.renderOption(category)
+                    <Select value={selectedOption._id} onChange={this.handleChange}>
+                        {options.map(option => {
+                            return this.renderOption(option)
                         })
                         }</Select>
                 </FormControl>
