@@ -28,7 +28,6 @@ const CategorySelector = (props) => {
         let categories = Object.values(props.categories);
         return (
             <div className={classes.root}>
-                {props.selectedCategory}
                 <FormControl className={classes.formControl}>
                     <Select value={props.selectedCategory} onChange={handleChange}>
                         {categories.map(category => {
