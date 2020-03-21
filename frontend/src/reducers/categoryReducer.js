@@ -2,7 +2,7 @@ import {FETCH_CATEGORIES, SELECT_CATEGORY} from "../actions/types";
 import _ from "lodash";
 
 const INITIAL_STATE = {
-    "0": {_id: "0", label: "All", selected: true}
+    "ALL": {_id: "ALL", label: "All", selected: true}
 };
 
 export default (state = INITIAL_STATE, action) => {

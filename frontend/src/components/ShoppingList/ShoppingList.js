@@ -18,7 +18,7 @@ class ShoppingList extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchItems(this.props.selectedCategory || "0");
+        this.props.fetchItems(this.props.selectedCategory || "ALL");
     }
 
     getSnapshotBeforeUpdate(prevProps) {
