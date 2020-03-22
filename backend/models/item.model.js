@@ -10,4 +10,13 @@ const ItemSchema = new Schema(
     }
 );
 
+ItemSchema.virtual('id').get(function () {
+    return this._id.toHexString();
+});
+
+ItemSchema.set('toJSON', {
+    virtuals: true
+});
+
+
 module.exports = mongoose.model("Item", ItemSchema, "items");

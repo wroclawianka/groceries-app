@@ -22,7 +22,7 @@ const ListCompletedItems = (props) => {
         <List className={classes.list}>
             {items.map(item => {
                 return (
-                    <ListItem key={item._id}>
+                    <ListItem key={item.id}>
                         <ListItemText primary={item.label} className={classes.item}/>
                     </ListItem>
                 );

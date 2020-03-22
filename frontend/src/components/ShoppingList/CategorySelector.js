@@ -17,7 +17,7 @@ class CategorySelector extends React.Component {
 
     renderOption(option) {
         return (
-            <MenuItem value={option._id} key={option._id}>{option.label}</MenuItem>
+            <MenuItem value={option.id} key={option.id}>{option.label}</MenuItem>
         )
     }
 
@@ -25,7 +25,7 @@ class CategorySelector extends React.Component {
         return (
             <div className={classes.categorySelector}>
                 <FormControl className={classes.categorySelectorForm}>
-                    <Select value={selectedOption._id} onChange={this.handleChange}>
+                    <Select value={selectedOption.id} onChange={this.handleChange}>
                         {options.map(option => {
                             return this.renderOption(option)
                         })

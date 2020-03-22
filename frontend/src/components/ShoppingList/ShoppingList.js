@@ -18,7 +18,7 @@ class ShoppingList extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchItems(this.props.selectedCategory || "0");
+        this.props.fetchItems(this.props.selectedCategory || "ALL");
     }
 
     getSnapshotBeforeUpdate(prevProps) {
@@ -30,7 +30,7 @@ class ShoppingList extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (snapshot.selectedCategoryChanged) {
             const selectedCategory = this.props.categories.find(cat => cat.selected);
-            this.props.fetchItems(selectedCategory._id);
+            this.props.fetchItems(selectedCategory.id);
         } else if (snapshot.itemsChanged) {
             let items = Object.values(this.props.items);
             items = _.groupBy(items, "completed");

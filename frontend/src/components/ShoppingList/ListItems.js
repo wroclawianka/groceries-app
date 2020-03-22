@@ -49,7 +49,7 @@ class ListItems extends React.Component {
                                 })
                             };
                             return (
-                                <ListItem key={item._id} button>
+                                <ListItem key={item.id} button>
                                     <ListItemText primary={item.label}/>
                                     <ListItemSecondaryAction>
                                         <Checkbox edge="end"  onChange={handleOpen}/>
