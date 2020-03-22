@@ -48,7 +48,7 @@ export const createItem = (label, categoryId) => async (dispatch, getState) => {
 };
 
 export const editItem = (item) => async dispatch => {
-    const [id, completed, cost] = [item._id, item.completed, item.cost];
+    const [id, completed, cost] = [item.id, item.completed, item.cost];
     const response = await groceries.patch(`/item/${id}`, {completed, cost});
     dispatch({type: EDIT_ITEM, payload: response.data})
 };

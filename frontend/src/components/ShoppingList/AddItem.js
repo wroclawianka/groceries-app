@@ -28,7 +28,7 @@ class AddItem extends React.Component {
 
     addItem = () => {
         const selectedCategory = this.props.categories.find(cat => cat.selected);
-        this.props.createItem(this.state.itemName, selectedCategory._id);
+        this.props.createItem(this.state.itemName, selectedCategory.id);
         this.setState({itemName: ''});
     };
 
