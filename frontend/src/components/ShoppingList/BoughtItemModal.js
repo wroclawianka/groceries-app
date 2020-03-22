@@ -18,11 +18,12 @@ class BoughtItemModal extends React.Component {
         };
     }
 
-    handleChange = (event) => {
+    handleChange = (e) => {
+        const cost = Number(e.target.value).toFixed(2);
         this.setState({
             item: {
                 ...this.state.item,
-                cost: event.target.value
+                cost: cost
             }
         });
     };
@@ -55,6 +56,7 @@ class BoughtItemModal extends React.Component {
                         value={this.state.item.cost}
                         type="number"
                         fullWidth
+                        inputProps={{ min: "0", step: "0.10"}}
                         onChange={this.handleChange}
                     />
                 </DialogContent>
