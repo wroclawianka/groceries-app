@@ -9,7 +9,7 @@ const category = require('./routes/category.route');
 const API_PORT = 3001;
 const app = express();
 app.use(cors());
-const dbRoute = 'mongodb+srv://admin:yO8zBSBv5M4ccFLF@groceries-jxsdg.mongodb.net/groceries?retryWrites=true&w=majority'; //TODO here
+const dbRoute = 'mongodb+srv://admin:yO8zBSBv5M4ccFLF@groceries-jxsdg.mongodb.net/groceries?retryWrites=true&w=majority';
 
 // connect to db
 mongoose.connect(dbRoute, {useNewUrlParser: true});
