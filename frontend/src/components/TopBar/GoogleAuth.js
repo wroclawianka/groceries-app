@@ -3,9 +3,11 @@ import {connect} from 'react-redux';
 import {Button} from "@material-ui/core";
 import {signIn, signOut} from "../../actions";
 
-const buttonStyle = {
-    color: "#ffffff"
-};
+const colorDefault = "#ffffff";
+
+function findBackground(color) {
+    return (color === "blue") ? "#3f51b5" : null;
+}
 
 class GoogleAuth extends React.Component {
     state = {isSignedIn: null, userId: null};
@@ -44,11 +46,20 @@ class GoogleAuth extends React.Component {
         switch (this.props.isSignedIn) {
             case true:
                 return (
-                    <Button onClick={this.onLogOutClick} style={buttonStyle}>Logout</Button>
+                    <Button onClick={this.onLogOutClick}
+                            style={{color: colorDefault}}
+                    >
+                        Logout
+                    </Button>
                 );
             case false:
                 return (
-                    <Button onClick={this.onLoginClick} style={buttonStyle}>Login</Button>
+                    <Button
+                        onClick={this.onLoginClick}
+                        style={{color: colorDefault, background: findBackground(this.props.mode)}}
+                    >
+                        {(this.props.mode === 'blue') ? "Login with Google" : "Login"}
+                    </Button>
                 );
             default:
                 return null
