@@ -5,8 +5,8 @@
    
    
 <p align="center">
-   <img width="45%" src="https://raw.githubusercontent.com/wroclawianka/groceries-app/master/assets/img/groceries-app-1.png"/>
-   <img width="45%" src="https://raw.githubusercontent.com/wroclawianka/groceries-app/master/assets/img/groceries-app-2.png"/>
+   <img width="45%" src="https://raw.githubusercontent.com/wroclawianka/groceries-app/master/assets/img/groceries-app-3.png"/>
+   <img width="45%" src="https://raw.githubusercontent.com/wroclawianka/groceries-app/master/assets/img/groceries-app-4.png"/>
 </p>
    
 ## Getting started
