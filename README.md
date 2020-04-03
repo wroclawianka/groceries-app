@@ -3,9 +3,10 @@
    - :wrench: React, Redux, Node.js, MongoDB
    - :date: March 2020
    
-      <p align="center">
-  <img width="40%" src="https://raw.githubusercontent.com/wroclawianka/groceries-app/master/assets/img/groceries-app-1.png"/>
-    <img width="40%" src="https://raw.githubusercontent.com/wroclawianka/groceries-app/master/assets/img/groceries-app-2.png"/>
+   
+<p align="center">
+   <img width="45%" src="https://raw.githubusercontent.com/wroclawianka/groceries-app/master/assets/img/groceries-app-1.png"/>
+   <img width="45%" src="https://raw.githubusercontent.com/wroclawianka/groceries-app/master/assets/img/groceries-app-2.png"/>
 </p>
    
 ## Getting started
