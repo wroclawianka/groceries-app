@@ -2,6 +2,7 @@
    - :mega: app for managing groceries of a company with possibilities to add item, mark and bought and specify cost
    - :wrench: React, Redux, Node.js, MongoDB
    - :date: March 2020
+   - :tv: [Demo](https://youtu.be/r-y8D6FmHk0)
    
    
 <p align="center">
